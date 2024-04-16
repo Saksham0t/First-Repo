@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Perform Calculations</title>
+    <style>
+        body {
+            text-align: center;
+            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(255, 0, 0, 0.5) 100%);
+            color: black;
+        }
+
+        .container {
+            border: 4px solid #007bff;
+            padding: 40px;
+            display: inline-block;
+            text-align: left;
+            background-color: #f4f4f4; 
+            font-weight: bold; 
+        }
+
+        .result-container {
+            border: 2px solid #007bff;
+            padding: 10px;
+            display: none;
+            margin-top: 10px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+    </style>
+    <script>
+        function calculate() {
+            var firstNumber = parseFloat(document.getElementById("firstNumber").value);
+            var secondNumber = parseFloat(document.getElementById("secondNumber").value);
+            var operation = document.querySelector('input[name="operation"]:checked').value;
+            var result;
+            switch (operation) {
+                case "add":
+                    result = firstNumber + secondNumber;
+                    break;
+                case "subtract":
+                    result = firstNumber - secondNumber;
+                    break;
+                case "multiply":
+                    result = firstNumber * secondNumber;
+                    break;
+                case "divide":
+                    result = secondNumber !== 0 ? firstNumber / secondNumber : "Error: Division by zero not allowed";
+                    break;
+            }
+            document.getElementById("resultDisplay").textContent = "Result: " + result;
+            document.getElementById("resultContainer").style.display = "block";
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Calculator</h2>
+    <div class="container">
+        <div>
+            <input type="radio" name="operation" value="add" checked> Add
+            <input type="radio" name="operation" value="subtract"> Subtract
+            <input type="radio" name="operation" value="multiply"> Multiply
+            <input type="radio" name="operation" value="divide"> Divide
+        </div>
+        <div>
+            <label for="firstNumber">First Number:</label>
+            <input type="number" id="firstNumber" name="firstNumber">
+        </div>
+        <div>
+            <label for="secondNumber">Second Number:</label>
+            <input type="number" id="secondNumber" name="secondNumber">
+        </div>
+        <div>
+            <button onclick="calculate()">Calculate</button>
+        </div>
+        <div class="result-container" id="resultContainer">
+            <span id="resultDisplay"></span>
+        </div>
+    </div>
+</body>
+
+</html>
